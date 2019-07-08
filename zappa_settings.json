@@ -5,6 +5,6 @@
         "project_name": "strava",
         "runtime": "python3.7",
         "memory_size":2048,
-        "s3_bucket": "zappa-strava-mapper"
+        "s3_bucket": ""
     }
 }

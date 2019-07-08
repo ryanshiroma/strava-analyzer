@@ -8,9 +8,11 @@ Try it out here: https://pwjwuiuj6i.execute-api.us-east-1.amazonaws.com/dev/
 ### Credits/Inspiration:
 
 I got some coding help from this repo.
+
 https://github.com/siquick/mostplayed
 
 The original idea for the mapping came from this existing js based website.
+
 https://www.jonathanokeeffe.com/strava/map.php
 
 

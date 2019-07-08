@@ -56,7 +56,7 @@ https://www.strava.com/settings/api
 Under `Authorization Callback Domain`, paste in the deployed app link **domain name only**.
 `https://pwjwuiuj6i.execute-api.us-east-1.amazonaws.com/dev/` -> `pwjwuiuj6i.execute-api.us-east-1.amazonaws.com`
 
-**7) Redeploy Updates**
+**8) Redeploy Updates**
 If you make any changes to the code or settings, you can redeploy the app using the existing AWS resources with:
 ```
 zappa update dev

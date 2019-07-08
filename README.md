@@ -5,6 +5,9 @@ Strava Mapper is a web app deployed on AWS Lambda that maps out all of your prev
 
 Try it out here: https://pwjwuiuj6i.execute-api.us-east-1.amazonaws.com/dev/
 
+Credits/Inspiration:
+got some coding help from this repo https://github.com/siquick/mostplayed
+original idea for the mapping came from this existing js based website https://www.jonathanokeeffe.com/strava/map.php
 
 ## Installation/Deployment Instructions
 **1) Setup the virtual environment**

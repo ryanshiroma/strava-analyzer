@@ -27,24 +27,19 @@ def index():
         code = request.args.get('code')
         token = token_exchange(code)
 
-        #put athlete_id in cookie and upload  rest to dynamodb
+        #store token and athlete_id in flask session
         client=Client(token['access_token'])
         athlete_id=client.get_athlete().id
-        session['athlete_id'] = athlete_id
-        session['expires_at'] = token['expires_at']
-
-        # put athlete/token information in dynamodb
-        dynamodb = boto3.resource('dynamodb')
-        db = dynamodb.Table('strava_table')
-        try:
-            entry = db.put_item(Item={
-                    'athlete_id':athlete_id,
-                    'code':code,
-                    'access_token':token['access_token'],
-                    'refresh_token':token['refresh_token'],
-                    'expires_at':decimal.Decimal(token['expires_at'])})
-        except: 
-            render_template('index.html',auth_link=request.url_root+'authenticate')      
+        if session:
+            session['athlete_id'] = athlete_id
+            session['expires_at'] = token['expires_at']
+            session['access_token'] = token['access_token']
+            session['refresh_token'] = token['refresh_token']
+            session['code'] = code
+        else:
+            render_template('index.html',auth_link=request.url_root+'authenticate')    
+        
+        #send to map page
         return redirect(request.url_root+'map', code=302)  
 
     #if user is already authenticated and not expired
@@ -59,26 +54,16 @@ def index():
     
 @app.route('/map')
 def map():
-    #return to index if user has no athlete_id cookie
-    if 'athlete_id' not in session:
-        return redirect(request.url_root)
-
-    #get info from dynamodb with athlete_id
-    athlete_id = session['athlete_id']
-    dynamodb = boto3.resource('dynamodb')
-    db = dynamodb.Table('strava_table')
-    try:
-        data = db.get_item(Key={'athlete_id':athlete_id})['Item']
-    except:
-        # return to index for authentication
+    #return to index if user has no session cookie
+    if not session:
         return redirect(request.url_root+'authenticate', code=302)
     
     #redirect to reauthenticate if token has expired
-    if time.time() > data['expires_at']:
+    if time.time() > session['expires_at']:
         return redirect(request.url_root+'authenticate', code=302)
 
     # create strava client and pull activities
-    client = Client(data['access_token'])
+    client = Client(session['access_token'])
     activities=list(client.get_activities())
 
     # add polylines

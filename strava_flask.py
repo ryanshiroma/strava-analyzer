@@ -19,6 +19,7 @@ app = Flask(__name__,template_folder='templates')
 client_id = config.client_id
 app.secret_key = config.client_secret
 app.config['SESSION_TYPE'] = 'filesystem'
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -28,22 +29,20 @@ def index():
         token = token_exchange(code)
 
         #store token and athlete_id in flask session
+        session.clear()
         client=Client(token['access_token'])
         athlete_id=client.get_athlete().id
-        if session:
-            session['athlete_id'] = athlete_id
-            session['expires_at'] = token['expires_at']
-            session['access_token'] = token['access_token']
-            session['refresh_token'] = token['refresh_token']
-            session['code'] = code
-        else:
-            render_template('index.html',auth_link=request.url_root+'authenticate')    
-        
+        session['athlete_id'] = athlete_id
+        session['expires_at'] = token['expires_at']
+        session['access_token'] = token['access_token']
+        session['refresh_token'] = token['refresh_token']
+        session['code'] = code
+       
         #send to map page
         return redirect(request.url_root+'map', code=302)  
 
     #if user is already authenticated and not expired
-    if ('athlete_id' in session) and (time.time() < session['expires_at']):
+    if (session) and (time.time() < session['expires_at']):
         return render_template('index.html',auth_link=request.url_root+'map')   
     
     # load page for authentication
@@ -78,7 +77,7 @@ def map():
     gmap.center = (mean(lats),mean(longs))
 
     #output maps html file and load back in as string form(kinda hacky since the draw() function only outputs files)
-    file_name=str(athlete_id)+'.html'
+    file_name=str(session['athlete_id'])+'.html'
     os.chdir('/tmp')
     gmap.draw(file_name)
     with open(file_name, 'r') as map_file:
@@ -89,6 +88,7 @@ def map():
 
 @app.route('/authenticate', methods=['GET', 'POST'])
 def auth():
+    session.clear()
     base_url = config.auth_url + '?client_id=' + config.client_id + \
         '&response_type=code&redirect_uri=' + request.url_root + \
         '&scope='+config.scope +\

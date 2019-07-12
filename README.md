@@ -18,15 +18,18 @@ https://www.jonathanokeeffe.com/strava/map.php
 
 
 ## Installation/Deployment Instructions
-**1) Setup the virtual environment**
+
+**1) Clone the repo**
+```
+git clone https://github.com/ryanshiroma/strava-mapper
+```
+
+**2) Setup the virtual environment**
 ```
 virtualenv --python=python3.7 env
 pip install -r requirements.txt
 ```
-**2) Clone the repo**
-```
-git clone https://github.com/ryanshiroma/strava-mapper
-```
+
 **3) Setup API access accounts**
 
 You'll need to setup accounts with both Google and Strava to access their APIs.

@@ -1,9 +1,20 @@
-# Strava Mapper
-*This is a project I worked on in March 2019 to learn the basic ideas of using APIs, AWS Lambda, AWS DynamoDB, and Flask in one combined project. It's still a work in progress.*
+# Strava Analyzer
 
-Strava Mapper is a web app deployed on AWS Lambda that maps out all of your previously run Strava workout routes on a single Google map. 
 
-Try it out here: https://pwjwuiuj6i.execute-api.us-east-1.amazonaws.com/dev/
+Strava Analyzer is a web app compiling some of my runner's high, mid-run, almost-sprained-your-ankle-on-that-curb, weird, analysis ideas. It currently utilizes the Strava API and the Dark Sky API and is deployed on AWS Lambda with Zappa.
+
+Try out the current version here: https://pwjwuiuj6i.execute-api.us-east-1.amazonaws.com/dev/
+
+
+**Current Ideas:**
+
+- [x] Map out all of your previously run Strava workout routes on a single Google map. 
+
+- [ ]  Plot interprettable effects of variables commonly associated with running pace using a [GAM](https://en.wikipedia.org/wiki/Generalized_additive_model).
+
+- [ ] Extended summary statistics
+
+
 
 ### Credits/Inspiration:
 
@@ -21,10 +32,10 @@ https://www.jonathanokeeffe.com/strava/map.php
 
 **1) Clone the repo**
 ```
-git clone https://github.com/ryanshiroma/strava-mapper
+git clone https://github.com/ryanshiroma/strava-analyzer
 ```
 
-**2) Setup the virtual environment**
+**2) Set up the virtual environment**
 ```
 virtualenv --python=python3.7 env
 pip install -r requirements.txt

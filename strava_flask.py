@@ -12,6 +12,8 @@ import os
 import boto3
 import time
 import decimal
+from darksky import forecast
+from pygam import LinearGAM, s, f
 
 app = Flask(__name__,template_folder='templates')
 
@@ -105,3 +107,8 @@ def refresh_token(refresh_token):
     client = Client()
     token = client.refresh_access_token(client_id=config.client_id, client_secret=config.client_secret, refresh_token=refresh_token)
     return token
+
+def get_weather(latitude,longitude,date):
+    return forecast(config.darksky_api_key, latitude, longitude,date)
+
+

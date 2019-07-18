@@ -1,7 +1,7 @@
 # Strava Analyzer
 
 
-Strava Analyzer is a web app compiling some of my runner's high, mid-run, almost-sprained-your-ankle-on-that-curb, weird, analysis ideas. It currently utilizes the Strava API and the Dark Sky API and is deployed on AWS Lambda with Zappa.
+Strava Analyzer is a web app compiling some of my mid-run, almost-sprained-your-ankle-on-that-curb with a runner's high, weird, workout analysis ideas. It currently utilizes the Strava API and the Dark Sky API and is deployed on AWS Lambda with Zappa.
 
 Try out the current version here: https://pwjwuiuj6i.execute-api.us-east-1.amazonaws.com/dev/
 

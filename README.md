@@ -15,6 +15,11 @@ Try out the current version here: https://pwjwuiuj6i.execute-api.us-east-1.amazo
 - [ ] Extended summary statistics
 
 
+*Work in Progress!!*
+*I currently have the GAM output showing smoothed functions of the date, elevation, and temperature. The plots look fairly accurate based on how I feel these three factors affect my pace. More work is needed to make this model more robust to handle any given persons Strava account and not just mine. Another concern is run time; it currently takes a couple of minutes on my local machine to fit(and grid search) the model. Optimizations to limit parameter searches and/or sampling and/or something else will need to be done to ensure a good web experience.*
+![year](year.png)
+![elevation](elevation.png)
+![temp](temp.png)
 
 ### Credits/Inspiration:
 

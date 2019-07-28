@@ -43,6 +43,7 @@ git clone https://github.com/ryanshiroma/strava-analyzer
 **2) Set up the virtual environment**
 ```
 virtualenv --python=python3.7 env
+source env/bin/activate
 pip install -r requirements.txt
 ```
 

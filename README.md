@@ -27,7 +27,7 @@ I got some coding help from this repo.
 
 https://github.com/siquick/mostplayed
 
-The original idea for the mapping came from this existing js based website.
+The original idea for the mapping came from this existing JS based website.
 
 https://www.jonathanokeeffe.com/strava/map.php
 
@@ -76,6 +76,7 @@ Change the `s3_bucket` to to your own unique s3 bucket name. No need to create t
 
 Deploy the app to AWS with a name(in this case `dev` but feel free to use whatever name you like):
 ```
+cd app
 zappa deploy dev
 ```
 Copy down the deployed app link once the process finishes running.

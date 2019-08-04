@@ -6,3 +6,4 @@ config.py
 zappa_settings.json
 .ipynb_checkpoints
 nohup.out
+app/*.zip

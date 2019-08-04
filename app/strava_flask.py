@@ -25,30 +25,37 @@ app.config['SESSION_TYPE'] = 'filesystem'
 @app.route('/')
 @app.route('/index')
 def index():
+    #if the user has already used the app(and has a cookie saved)
+    if session:
+        #if user is already authenticated and not expired
+        if (time.time() < session['expires_at']):
+            return render_template('index.html',auth_link=request.url_root+'map') 
+        #if the user's token is expired, refresh the oken  
+        else:
+           token = refresh_token(session['refresh_token'])
+    
+    #if a code is being returned
     if request.args.get('code'):
         #take code and convert to token
         code = request.args.get('code')
         token = token_exchange(code)
 
-        #store token and athlete_id in flask session
-        session.clear()
-        client=Client(token['access_token'])
-        athlete_id=client.get_athlete().id
-        session['athlete_id'] = athlete_id
-        session['expires_at'] = token['expires_at']
-        session['access_token'] = token['access_token']
-        session['refresh_token'] = token['refresh_token']
-        session['code'] = code
-       
-        #send to map page
-        return redirect(request.url_root+'map', code=302)  
-
-    #if user is already authenticated and not expired
-    if (session) and (time.time() < session['expires_at']):
-        return render_template('index.html',auth_link=request.url_root+'map')   
+    # if this is the user's first visit, load page for authentication
+    else: 
+        return render_template('index.html',auth_link=request.url_root+'authenticate')
     
-    # load page for authentication
-    return render_template('index.html',auth_link=request.url_root+'authenticate')
+    #store token and athlete_id in flask session
+    session.clear()
+    client = Client(token['access_token'])
+    athlete_id = client.get_athlete().id
+    session['athlete_id'] = athlete_id
+    session['expires_at'] = token['expires_at']
+    session['access_token'] = token['access_token']
+    session['refresh_token'] = token['refresh_token']
+    session['code'] = code
+       
+    #send to map page
+    return redirect(request.url_root+'map', code=302)  
 
         
 

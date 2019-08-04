@@ -72,6 +72,13 @@ google_api_key = '' # google maps api key
 
 Change the `s3_bucket` to to your own unique s3 bucket name. No need to create this bucket, Zappa will automatically create it for you in the next step.
 
+**6) Configure AWS**
+In order to delploy to AWS with Zappa, you first need to configure AWS with your AWS account.
+```
+aws configure
+```
+Enter your Access Key ID and Secret Access Key from AWS IAM.
+
 **6) Deploy app with Zappa**
 
 Deploy the app to AWS with a name(in this case `dev` but feel free to use whatever name you like):
@@ -84,9 +91,13 @@ Copy down the deployed app link once the process finishes running.
 **7) Update the Strava callback URL**
 
 In order for the Strava authentication to work, you'll need to add the app link to the callback URL on the Strava API site.
+
 https://www.strava.com/settings/api
+
 Under `Authorization Callback Domain`, paste in the deployed app link **domain name only**.
+
 `https://pwjwuiuj6i.execute-api.us-east-1.amazonaws.com/dev/` -> `pwjwuiuj6i.execute-api.us-east-1.amazonaws.com`
+
 
 **8) Redeploy Updates**
 If you make any changes to the code or settings, you can redeploy the app using the existing AWS resources with:

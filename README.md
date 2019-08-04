@@ -79,7 +79,7 @@ aws configure
 ```
 Enter your Access Key ID and Secret Access Key from AWS IAM.
 
-**6) Deploy app with Zappa**
+**7) Deploy app with Zappa**
 
 Deploy the app to AWS with a name(in this case `dev` but feel free to use whatever name you like):
 ```
@@ -88,7 +88,7 @@ zappa deploy dev
 ```
 Copy down the deployed app link once the process finishes running.
 
-**7) Update the Strava callback URL**
+**8) Update the Strava callback URL**
 
 In order for the Strava authentication to work, you'll need to add the app link to the callback URL on the Strava API site.
 
@@ -99,7 +99,7 @@ Under `Authorization Callback Domain`, paste in the deployed app link **domain n
 `https://pwjwuiuj6i.execute-api.us-east-1.amazonaws.com/dev/` -> `pwjwuiuj6i.execute-api.us-east-1.amazonaws.com`
 
 
-**8) Redeploy Updates**
+**9) Redeploy Updates**
 If you make any changes to the code or settings, you can redeploy the app using the existing AWS resources with:
 ```
 zappa update dev

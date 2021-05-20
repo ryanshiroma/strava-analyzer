@@ -31,7 +31,7 @@ python-slugify==1.2.4
 pytz==2019.1
 pyyaml>=5.4
 requests==2.22.0
-rsa==3.4.2
+rsa==4.7
 s3transfer==0.2.1
 six==1.12.0
 stravalib==0.10.2

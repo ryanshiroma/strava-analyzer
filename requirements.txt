@@ -1,5 +1,5 @@
 argcomplete==1.9.3
-arrow==0.14.2
+arrow==0.15.1
 awscli==1.16.193
 boto3==1.9.183
 botocore==1.12.183

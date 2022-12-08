@@ -3,7 +3,7 @@ arrow==0.14.2
 awscli==1.16.193
 boto3==1.9.183
 botocore==1.12.183
-certifi==2019.6.16
+certifi==2022.12.7
 cfn-flip==1.2.1
 chardet==3.0.4
 Click==7.0
